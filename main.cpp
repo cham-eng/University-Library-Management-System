@@ -6,22 +6,45 @@ using namespace std;
 
 void registerBooks(int id[], string title[], string author[], int totCopies[], int copiesAva[], int &bookCount) {
     
+    
    
 
     while (bookCount < 50){
-    cout << "Enter the books ID, title, author, total number of copies[-1 to exit]: ";
-    cin >> id[bookCount];
-    if (id[bookCount] == -1) {
-        return;
+        bool unique = false;
+        while (unique == false) {
+            cout << "Enter the books ID [-1 to exit]: ";
+            cin >> id[bookCount];
+             if (id[bookCount] == -1) 
+             {
+                return;
+            }
+            unique = true;
+            for (int i = 0; i < bookCount; i++){
+        if (id[bookCount] == id[i]){
+            cout << "This ID is already present, please try again: ";
+            unique = false;
+            break;
+        }
+        
     }
+    
+   
+    }
+    cout << "Enter title, author, and total number of copies: ";
     cin.ignore();
     getline(cin, title[bookCount]);
     getline(cin, author[bookCount]);
     cin >> totCopies[bookCount];
-    totCopies[bookCount] = copiesAva[bookCount];
+    copiesAva[bookCount] = totCopies[bookCount];
 
     bookCount++;
     }
+}
+
+void searchBook(int id[], int bookFound){
+
+    cout << "Search for a book by its ID: ";
+    cin >> bookFound;
 }
 
 int main() {
@@ -32,6 +55,8 @@ int main() {
     string author[50];
     int totCopies[50];
     int copiesAva[50];
+
+    int bookFound = 0;
 
     registerBooks(id, title, author, totCopies, copiesAva, bookCount);
 
