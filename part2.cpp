@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <string>
     
 using namespace std;
@@ -9,8 +10,8 @@ void displayBooks(int id[],string title[],string author[],int totCopies[],int co
 
         for (int i=0; i < bookCount; i++)
         {
-            cout << id[i] << "\t.  " << title[i] << "\t" << author[i] << "\t"
-            << totCopies[i] << "\t" << copiesAva[i] << "\t" << endl;
+            cout << id[i] << setw(10) << title[i] << setw(10) << author[i] << setw(10)
+            << totCopies[i] << setw(10) << copiesAva[i] << setw(10) << endl;
         }
 
     }
