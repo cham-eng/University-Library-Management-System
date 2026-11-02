@@ -40,6 +40,12 @@ void registerBooks(int id[], string title[], string author[], int totCopies[], i
     }
 }
 
+void searchBook(int id[], int bookFound){
+
+    cout << "Search for a book by its ID: ";
+    cin >> bookFound;
+}
+
 int main() {
 
     int bookCount = 0;
@@ -48,6 +54,8 @@ int main() {
     string author[50];
     int totCopies[50];
     int copiesAva[50];
+
+    int bookFound = 0;
 
     registerBooks(id, title, author, totCopies, copiesAva, bookCount);
 
