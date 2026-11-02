@@ -6,7 +6,8 @@ using namespace std;
 
 void displayBooks(int id[],string title[],string author[],int totCopies[],int copiesAva[],int bookCount)
     {
-        cout << "Book ID\tTitle\tAuthor\tTotal\tAvailable" << endl;
+        cout << "Book ID" << setw(10) << "Title" << setw(10)
+        << "Author" << setw(10) << "Total" << setw(10) << "Available" << endl;
 
         for (int i=0; i < bookCount; i++)
         {
