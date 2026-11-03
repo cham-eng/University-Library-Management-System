@@ -1,14 +1,11 @@
 #include <iostream>
-
+#include <iomanip>
 #include <string>
     
 using namespace std;
 
 void registerBooks(int id[], string title[], string author[], int totCopies[], int copiesAva[], int &bookCount) {
     
-    
-   
-
     while (bookCount < 50){
         bool unique = false;
         while (unique == false) {
@@ -41,16 +38,68 @@ void registerBooks(int id[], string title[], string author[], int totCopies[], i
     }
 }
 
-int searchBook(int id[], int bookFound, int bookCount){
+void displayBooks(int id[],string title[],string author[],int totCopies[],int copiesAva[],int bookCount)
+    {
+        cout << "Book ID" << setw(10) << "Title" << setw(10)
+        << "Author" << setw(10) << "Total" << setw(10) << "Available" << endl;
 
-    cout << "Search for a book by its ID: ";
-    cin >> bookFound;
+        for (int i=0; i < bookCount; i++)
+        {
+            cout << id[i] << setw(10) << title[i] << setw(10) << author[i] << setw(10)
+            << totCopies[i] << setw(10) << copiesAva[i] << setw(10) << endl;
+        }
+
+    }
+
+int searchBook(int id[], int bookFound, int bookCount){
     for (int i = 0; i < bookCount; i++) {
         if (id[i] == bookFound)
         return i;
     }
+    return -1;
 }
 
+void borrowBook(int id[], int bookFound, int bookCount, int copiesAva[], string title[]) {
+    cout << "Enter the ID of the book you would like to borrow: ";
+    cin >> bookFound;
+    int bookChosen = searchBook(id, bookFound, bookCount);
+
+    if (bookChosen == -1) {
+        cout << "Error: Book ID not found!\n";
+        return;
+    }
+
+    if (copiesAva[bookChosen] > 0) {
+        copiesAva[bookChosen]--;
+        cout << "You have successfully borrowed " << title[bookChosen] <<"." <<endl;
+    } else {
+        cout << "Sorry, there are no more copies available.";
+    }
+
+}
+
+void returnBook(int id[], int bookFound, int bookCount, int copiesAva[], string title[], int totCopies[]) {
+    cout << "Enter the ID of the book you would like to return: ";
+    cin >> bookFound;
+    int bookChosen = searchBook(id, bookFound, bookCount);
+
+    if (bookChosen == -1) {
+        cout << "Error: Book ID not found!\n";
+        return;
+    }
+    
+    if (totCopies[bookChosen] > copiesAva[bookChosen]) {
+        copiesAva[bookChosen]++;
+        cout << "You have successfully return " << title[bookChosen] << ". \n";
+    } else {
+        cout << "You haven\'t borrowed that book yet.";
+    }
+}
+void displayStatistics(){
+
+
+    
+}
 int main() {
 
     int bookCount = 0;
@@ -60,7 +109,6 @@ int main() {
     int totCopies[50];
     int copiesAva[50];
 
-    int bookFound = 0;
 
     registerBooks(id, title, author, totCopies, copiesAva, bookCount);
 
