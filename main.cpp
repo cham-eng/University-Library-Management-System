@@ -41,10 +41,14 @@ void registerBooks(int id[], string title[], string author[], int totCopies[], i
     }
 }
 
-void searchBook(int id[], int bookFound){
+int searchBook(int id[], int bookFound, int bookCount){
 
     cout << "Search for a book by its ID: ";
     cin >> bookFound;
+    for (int i = 0; i < bookCount; i++) {
+        if (id[i] == bookFound)
+        return i;
+    }
 }
 
 int main() {
