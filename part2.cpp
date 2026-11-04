@@ -41,13 +41,49 @@ void displayStatistics(int bookCount, int totCopies[], int copiesAva[]) {
 int main() {
 
     int bookCount = 0;
+    int bookFound = 0;
     int id[50];
     string title[50];
     string author[50];
     int totCopies[50];
     int copiesAva[50];
 
-    displayBooks(id, title, author, totCopies, copiesAva, bookCount);
-    displayStatistics(bookCount, totCopies, copiesAva);
+    int selection;
+
+    do {
+        cout << "\nLIBRARY MANAGEMENT SYSTEM\n";
+        cout << "1. Register Books\n";
+        cout << "2. Display All Books\n";
+        cout << "3. Search for a Book\n";
+        cout << "4. Borrow a Book\n";
+        cout << "5. Return a Book\n";
+        cout << "6. Display Library Statistics\n";
+        cout << "7. Exit\n";
+        
+        cout << "Enter your menu selection: ";
+        cin >> selection;
+        
+        switch (selection) {
+            case 1:
+            registerBooks(id, title, author, totCopies, copiesAva, bookCount);
+            break;
+            case 2:
+            displayBooks (id, title, author,  totCopies, copiesAva, bookCount);
+            break;
+            case 3:
+            searchBook(id, bookFound, bookCount);
+            break;
+            case 4:
+            borrowBook(id, bookFound, bookCount, copiesAva, title);
+            break;
+            case 5:
+            returnBook(id, bookFound, bookCount, copiesAva, title, totCopies);
+            break;
+            case 6:
+            displayStatistics(bookCount, totCopies, copiesAva);
+            break;
+            default: cout << "Invalid selection.\n";
+        }
+    } while (selection != 7);
 
 }
