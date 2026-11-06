@@ -94,12 +94,31 @@ void returnBook(int id[], int bookFound, int bookCount, int copiesAva[], string 
     } else {
         cout << "You haven\'t borrowed that book yet.";
     }
+
 }
-void displayStatistics(){
+void displayStatistics(int bookCount, int totCopies[], int copiesAva[]) {
+
+    int totalPhysical = 0;
+    int totalAvail = 0;
+    int totalBorrowed = 0;
+    
+    for (int i=0; i < bookCount; i++)
+    {
+        totalPhysical += totCopies[i];
+        totalAvail += copiesAva[i];
+        totalBorrowed += totCopies[i] - copiesAva[i];
+    }
+
+    cout << "Library statistics\n";
+    cout << "Total registered book titles: " << bookCount << endl;
+    cout << "Total physical copies: " << totalPhysical << endl;
+    cout << "Total available copies: " << totalAvail << endl;
+    cout << "Total borrowed copies: " << totalBorrowed << endl;
+    
+}
 
 
     
-}
 int main() {
 
     int bookCount = 0;
@@ -110,14 +129,50 @@ int main() {
     int copiesAva[50];
 
 
-    registerBooks(id, title, author, totCopies, copiesAva, bookCount);
+ int selection;
+
+    do {
+        cout << "\nLIBRARY MANAGEMENT SYSTEM\n";
+        cout << "1. Register Books\n";
+        cout << "2. Display All Books\n";
+        cout << "3. Search for a Book\n";
+        cout << "4. Borrow a Book\n";
+        cout << "5. Return a Book\n";
+        cout << "6. Display Library Statistics\n";
+        cout << "7. Exit\n";
+        
+        cout << "Enter your menu selection: ";
+        cin >> selection;
+        
+        switch (selection) {
+            case 1:
+            registerBooks(id, title, author, totCopies, copiesAva, bookCount);
+            break;
+            case 2:
+            displayBooks (id, title, author,  totCopies, copiesAva, bookCount);
+            break;
+            case 3:
+            searchBook(id, bookFound, bookCount);
+            break;
+            case 4:
+            borrowBook(id, bookFound, bookCount, copiesAva, title);
+            break;
+            case 5:
+            returnBook(id, bookFound, bookCount, copiesAva, title, totCopies);
+            break;
+            case 6:
+            displayStatistics(bookCount, totCopies, copiesAva);
+            break;
+            default: cout << "Invalid selection.\n";
+        }
+    } while (selection != 7);
 
 
 
 
 
 
-
+    return 0;
 
 
 }
