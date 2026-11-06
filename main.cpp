@@ -22,10 +22,8 @@ void registerBooks(int id[], string title[], string author[], int totCopies[], i
             unique = false;
             break;
         }
-        
     }
     
-   
     }
     cout << "Enter title, author, and total number of copies: ";
     cin.ignore();
@@ -40,16 +38,16 @@ void registerBooks(int id[], string title[], string author[], int totCopies[], i
 
 void displayBooks(int id[],string title[],string author[],int totCopies[],int copiesAva[],int bookCount)
     {
-        cout << "Book ID" << setw(10) << "Title" << setw(10)
-        << "Author" << setw(10) << "Total" << setw(10) << "Available" << endl;
+        cout << setw(15) << "Book ID" << setw(30) << "Title" << setw(20)
+        << "Author" << setw(15) << "Total" << setw(15) << "Available" << endl;
 
         for (int i=0; i < bookCount; i++)
         {
-            cout << id[i] << setw(10) << title[i] << setw(10) << author[i] << setw(10)
-            << totCopies[i] << setw(10) << copiesAva[i] << setw(10) << endl;
+            cout << setw(15) << id[i] << setw(30) << title[i] << setw(20) << author[i] << setw(15)
+            << totCopies[i] << setw(15) << copiesAva[i] << endl;
         }
-
     }
+
 
 int searchBook(int id[], int bookFound, int bookCount){
     for (int i = 0; i < bookCount; i++) {
@@ -109,25 +107,23 @@ void displayStatistics(int bookCount, int totCopies[], int copiesAva[]) {
         totalBorrowed += totCopies[i] - copiesAva[i];
     }
 
-    cout << "Library statistics\n";
-    cout << "Total registered book titles: " << bookCount << endl;
-    cout << "Total physical copies: " << totalPhysical << endl;
-    cout << "Total available copies: " << totalAvail << endl;
-    cout << "Total borrowed copies: " << totalBorrowed << endl;
+    cout << "\nLibrary statistics\n";
+    cout << "Total of registered book titles: " << bookCount << endl;
+    cout << "Total of physical copies: " << totalPhysical << endl;
+    cout << "Total of available copies: " << totalAvail << endl;
+    cout << "Total of borrowed copies: " << totalBorrowed << endl;
     
 }
 
-
-    
 int main() {
 
     int bookCount = 0;
+    int bookFound = 0;
     int id[50];
     string title[50];
     string author[50];
     int totCopies[50];
     int copiesAva[50];
-    int bookFound = 0;
     int bookChosen = 0;
 
  int selection;
@@ -156,11 +152,11 @@ int main() {
             cout << "Enter the Id of the book you would like to find: ";
             cin >> bookFound;
             searchBook(id, bookFound, bookCount);
-            cout << "Book ID" << setw(10) << "Title" << setw(10)
-        << "Author" << setw(10) << "Total" << setw(10) << "Available" << endl;
-         cout << id[bookChosen] << setw(10) << title[bookChosen] << setw(10) << author[bookChosen] << setw(10)
-            << totCopies[bookChosen] << setw(10) << copiesAva[bookChosen] << setw(10) << endl;
+            cout << setw(15) << "Book ID" << setw(30) << "Title" << setw(20)
+        << "Author" << setw(15) << "Total" << setw(15) << "Available" << endl;
 
+         cout << setw(15) << id[bookChosen] <<  setw(30) << title[bookChosen] << setw(20) << author[bookChosen] 
+         << setw(15) << totCopies[bookChosen] << setw(15) << copiesAva[bookChosen] << endl;
 
             break;
             case 4:
@@ -178,12 +174,6 @@ int main() {
         }
     } while (selection != 7);
 
-
-
-
-
-
     return 0;
-
 
 }
