@@ -15,6 +15,11 @@ void registerBooks(int id[], string title[], string author[], int totCopies[], i
              {
                 return;
             }
+            while (id[bookCount] < 0) {
+                cout << "The ID can't be negative. Please try again: ";
+                cin >> id[bookCount];
+            }
+
             unique = true;
             for (int i = 0; i < bookCount; i++){
         if (id[bookCount] == id[i]){
@@ -30,6 +35,11 @@ void registerBooks(int id[], string title[], string author[], int totCopies[], i
     getline(cin, title[bookCount]);
     getline(cin, author[bookCount]);
     cin >> totCopies[bookCount];
+
+    while (totCopies[bookCount] < 0) {
+        cout << "The total number of copies can't be negative. Please try again: ";
+        cin >> totCopies[bookCount];
+    }
     copiesAva[bookCount] = totCopies[bookCount];
 
     bookCount++;
