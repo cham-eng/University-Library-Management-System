@@ -127,7 +127,8 @@ int main() {
     string author[50];
     int totCopies[50];
     int copiesAva[50];
-
+    int bookFound = 0;
+    int bookChosen = 0;
 
  int selection;
 
@@ -152,7 +153,15 @@ int main() {
             displayBooks (id, title, author,  totCopies, copiesAva, bookCount);
             break;
             case 3:
+            cout << "Enter the Id of the book you would like to find: ";
+            cin >> bookFound;
             searchBook(id, bookFound, bookCount);
+            cout << "Book ID" << setw(10) << "Title" << setw(10)
+        << "Author" << setw(10) << "Total" << setw(10) << "Available" << endl;
+         cout << id[bookChosen] << setw(10) << title[bookChosen] << setw(10) << author[bookChosen] << setw(10)
+            << totCopies[bookChosen] << setw(10) << copiesAva[bookChosen] << setw(10) << endl;
+
+
             break;
             case 4:
             borrowBook(id, bookFound, bookCount, copiesAva, title);
@@ -164,6 +173,8 @@ int main() {
             displayStatistics(bookCount, totCopies, copiesAva);
             break;
             default: cout << "Invalid selection.\n";
+            case 7:
+            break;
         }
     } while (selection != 7);
 
